@@ -13,6 +13,7 @@ import "../interfaces/IEigenPodManager.sol";
  * @notice This storage contract is separate from the logic to simplify the upgrade process.
  */
 abstract contract DelegationManagerStorage is IDelegationManager {
+
     /// @notice The EIP-712 typehash for the contract's domain
     bytes32 public constant DOMAIN_TYPEHASH =
         keccak256("EIP712Domain(string name,uint256 chainId,address verifyingContract)");
@@ -114,6 +115,66 @@ abstract contract DelegationManagerStorage is IDelegationManager {
         eigenPodManager = _eigenPodManager;
         slasher = _slasher;
     }
+
+    /**
+     * DelegationManager Errors
+     */
+
+    /// @dev Error thrown when calling DelegationManager.registerAsOperator
+    /// @param msg error description
+    error RegisterAsOperatorError(string msg);
+
+    /// @dev Error thrown when calling DelegationManager.modifyOperatorDetails
+    /// @param msg error description
+    error ModifyOperatorDetailsError(string msg);
+
+    /// @dev Error thrown when calling DelegationManager.delegateTo
+    /// @param msg error description
+    error DelegateToError(string msg);
+
+    /// @dev Error thrown when calling DelegationManager.delegateToBySignature
+    /// @param msg error description
+    error DelegateToBySignatureError(string msg);
+
+    /// @dev Error thrown when calling DelegationManager.updateOperatorMetadataURI
+    /// @param msg error description
+    error UpdateOperatorMetadataURIError(string msg);
+
+    /// @dev Error thrown when calling DelegationManager.undelegate
+    /// @param msg error description
+    error UndelegateError(string msg);
+
+    /// @dev Error thrown when calling DelegationManager.queueWithdrawals
+    /// @param msg error description
+    error QueueWithdrawalsError(string msg);
+
+    /// @dev Error thrown when calling DelegationManager.queueWithdrawalsWithSignature
+    /// @param msg error description
+    error QueueWithdrawalsWithSignatureError(string msg);
+
+    /// @dev Error thrown when calling DelegationManager._setOperatorDetails
+    /// @param msg error description
+    error SetOperatorDetailsError(string msg);
+
+    /// @dev Error thrown when calling DelegationManager._delegate
+    /// @param msg error description
+    error DelegateError(string msg);
+
+    /// @dev Error thrown when calling DelegationManager._completeQueuedWithdrawal
+    /// @param msg error description
+    error CompleteQueuedWithdrawalError(string msg);
+
+    /// @dev Error thrown when calling DelegationManager._removeSharesAndQueueWithdrawal
+    /// @param msg error description
+    error RemoveSharesAndQueueWithdrawalError(string msg);
+
+    /// @dev Error thrown when calling DelegationManager._setMinWithdrawalDelayBlocks
+    /// @param msg error description
+    error SetMinWithdrawalDelayBlocksError(string msg);
+
+    /// @dev Error thrown when calling DelegationManager._setStrategyWithdrawalDelayBlocksE
+    /// @param msg error description
+    error SetStrategyWithdrawalDelayBlocksError(string msg);
 
     /**
      * @dev This empty reserved space is put in place to allow future versions to add new
